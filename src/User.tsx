@@ -1,58 +1,33 @@
-import { useEffect, useState } from "react"
-import { type ApiStatus, type UserType} from "./Types";
+import { useUser } from "./hooks/useUser";
+import { useApiStatus } from "./hooks/useApiStatus";
 const User = () => {
 
-    const [ message, setMessage ] = useState<ApiStatus | null> ( null );
-    const [ user, setUser ] = useState<UserType | null >(null)
+    const { data: apiHealt, isLoading: healthLoading} = useApiStatus();
+    const { data, isLoading, error } = useUser();
+    const user = data?.user;
+
+    if(error) return <h1>Error: {error.message}</h1>
     
-    useEffect( () => {
-        fetch('http://localhost:3000/health')
-        .then(res => res.json())
-        .then(data => setMessage(data))
-        .catch(e => console.error(e));        
-
-
-        
-        const token = localStorage.getItem('token');
-
-        if(!token){
-            console.error('token does not exsist') 
-            return  
-        } 
-        
-
-        fetch('http://localhost:3000/api/auth/me', {
-            headers: {
-                Authorization: `Bearer ${token}`
-            },
-        })
-        .then(res => {
-            if(!res.ok) throw new Error("Res error");
-            return res.json();
-        })
-        .then(data => {
-            console.log('User Data: ', data.user);
-            setUser(data.user);
-        })
-        .catch(e => console.error(e.message));
-
-    }, [])
-
     return (
         <>
             <div>
-                <h1>Backend says that health status: {message?.status} - timestamp:  {message?.timestamp}</h1>
+                {healthLoading ? (
+                    <h1>API health Loading...</h1>
+                ) : 
+                (
+                    <h1>Backend says that health status: {apiHealt.status} - timestamp:  {apiHealt.timestamp}</h1>
+                )}
             </div>
-            <div>
-                <h1>USER:</h1>
-                <p>user id: {user?.id}</p>
-                <p>user email: {user?.email}</p>
-                <p>user name: {user?.name}</p>
-                <p>user created at: {user?.created_at}</p>
-
-            </div>
+            {isLoading ? (<h1>Loading for User...</h1>) : (
+                <div>
+                    <h1>USER:</h1>
+                    <p>user id: {user?.id}</p>
+                    <p>user email: {user?.email}</p>
+                    <p>user name: {user?.name}</p>
+                    <p>user created at: {user?.created_at}</p>
+                </div>
+            )}
         </>
-        
     )
 }
 export default User
