@@ -1,0 +1,6 @@
+.login-register{
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 40px;
+}
