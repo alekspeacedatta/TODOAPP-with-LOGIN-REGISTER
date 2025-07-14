@@ -32,7 +32,9 @@ const AddTodo = () => {
                 </section>
                 <input type="submit" />
             </form>
-            <h1>Token: {token}</h1>
+            <div style={{ width: '300px', display: 'flex' }}>
+                <h3 >Token: {token}</h3>
+            </div>
         </div>
     )
 }

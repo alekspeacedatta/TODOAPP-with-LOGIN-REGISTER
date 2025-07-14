@@ -4,7 +4,7 @@ import { StrictMode } from 'react'
 import User from './User'
 import Register from './Register-Login/Register/Register'
 import Login from './Register-Login/Login/Login'
-import UserToDo from './UserTodo'
+import UserToDo from './UserToDo'
 import AddTodo from './AddTodo'
 import './index.css'
 

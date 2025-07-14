@@ -3,10 +3,12 @@ export interface ApiStatus {
     timestamp: string,
 }
 export interface UserType {
-    id: number,
-    email: string,
-    name: string,
-    created_at: string
+    user: {
+        id: number,
+        email: string,
+        name: string,
+        created_at: string
+    }
 }
 export interface TodosType {    
     id: number,
@@ -20,4 +22,13 @@ export interface TodosType {
 export interface TaskType {
     title: string,
     description: string
+}
+export interface LoginUserType {
+    email: string,
+    password: string,
+}
+export interface RegisterUserType{
+    email: string,
+    password: string,
+    name: string,
 }

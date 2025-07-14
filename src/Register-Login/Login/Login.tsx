@@ -1,31 +1,20 @@
 import { useState} from "react";
 import '../Register-Login.css'
+import { useLogin } from "../../hooks/useLogin";
 
 const Login = () => {
+
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
+    const { mutate: login } = useLogin();
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
-        const res = await fetch('http://localhost:3000/api/auth/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                email: email,
-                password: password
-            })
-        })
-        const data = await res.json();
-        
-        if(res.ok && data.token){
-            localStorage.setItem('token', data.token);
-            console.log(`${data.message}, token saved`);
-        } else {
-            console.error('Register failed: ', data.message);
-        }
+        login({ email, password})
+        setEmail('');
+        setPassword('');
     }
+
     return (
         <div>
             <form onSubmit={handleSubmit}>
