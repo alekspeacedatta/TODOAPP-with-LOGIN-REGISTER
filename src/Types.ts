@@ -17,3 +17,7 @@ export interface TodosType {
     created_at: string,
     updated_at: string,
 }
+export interface TaskType {
+    title: string,
+    description: string
+}

@@ -25,12 +25,27 @@ export const fetchUserTodos = async () => {
     return data.todos;
 }
 export const deleteTask = async (taskId: number) => {
+    
     const res = await fetch(`http://localhost:3000/api/todos/${taskId}`, {
         method: 'DELETE',
         headers: {
-                Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${token}`
         }
     })
     if(!res.ok) throw new Error("Error, DeleteTask Res Is Not Ok");
-    
+}
+export const addTask = async ( title: string, description: string ) => {
+    const res = await fetch('http://localhost:3000/api/todos', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'Application/json',
+            Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({
+            title: title,
+            description: description
+        })
+    })
+    if(!res.ok) throw new Error("Error Addgin Task Res Is Not Ok");
+    return res.json();
 }

@@ -1,46 +1,19 @@
-import { useEffect, useState } from "react";
 import { useUserTodo } from "./hooks/useUserTodo";
 import { type TodosType } from "./Types";
+import { useDeleteTask } from "./hooks/useDeleteTask";
 
 const UserToDo = () => {
-    // const [ todos, setTodos] = useState<TodosType[]>([]);
-
-    const token = localStorage.getItem('token');
-
-    const { data: todos, isLoading, error } = useUserTodo();
-
-    // useEffect(() => {
-
-    //     fetch('http://localhost:3000/api/todos', {
-    //         headers: {
-    //             Authorization: `Bearer ${token}`
-    //         }
-    //     })
-    //     .then(res => {
-    //         if(!res.ok) throw new Error("Res is not ok");
-    //         return res.json();
-    //     })
-    //     .then(data => {
-    //         console.log("User Todos",  data.todos);
-    //         setTodos(data.todos)
-    //     })
-    //     .catch(e => console.error(e.message));
-
-    // }, [todos]) 
     
-    // const deleteTask = (taskId : number) => {
-    //     fetch(`http://localhost:3000/api/todos/${taskId}`, {
-    //         method: 'DELETE',
-    //         headers: {
-    //             Authorization: `Bearer ${token}`
-    //         }
-    //     })
-    //     .then(res => {
-    //         if(!res.ok) throw new Error("DelteTask Res is not Ok");
-    //         setTodos(prev => prev.filter(todo => todo.id !== taskId));
-    //     })
-    //     .catch(e => console.error(e.message))
-    // }
+    const { data: todos, isLoading, error } = useUserTodo();
+    const { mutate: deleteTask } = useDeleteTask();
+    
+    const handleDelete = ( taskId : number ) => {
+        deleteTask( taskId );
+    }
+
+    if(isLoading) return <p>Loading...</p>
+    if(error) return <p>Error: {error.message}</p>
+
     return (
         <div>
             <h1>User Todos:</h1>
@@ -51,7 +24,7 @@ const UserToDo = () => {
                     <input type="radio" checked={todo.completed} />
                     <p>created at: {todo.created_at}</p>
                     <p>updated at: {todo.updated_at}</p>
-                    {/* <button onClick={() => { deleteTask(todo.id) }}>delete Task</button> */}
+                    <button onClick={() => { handleDelete(todo.id) }}>delete Task</button> 
                 </div>
             ))}
         </div>
