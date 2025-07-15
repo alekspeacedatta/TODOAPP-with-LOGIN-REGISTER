@@ -1,7 +1,6 @@
 import { useUser } from "./hooks/useUser";
 import { useApiStatus } from "./hooks/useApiStatus";
 import { useUserTodo } from "./hooks/useUserTodo"; 
-import { useMutation } from "@tanstack/react-query";
 const User = () => {
 
     const { data: apiHealt, isLoading: healthLoading} = useApiStatus();
