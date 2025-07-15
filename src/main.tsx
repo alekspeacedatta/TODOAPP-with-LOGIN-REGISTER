@@ -4,8 +4,8 @@ import { StrictMode } from 'react'
 import User from './User'
 import Register from './Register-Login/Register/Register'
 import Login from './Register-Login/Login/Login'
-import UserToDo from './UserToDo'
-import AddTodo from './AddTodo'
+import UserToDo from './Todo/UserToDo'
+import AddTodo from './Todo/AddTodo'
 import './index.css'
 
 const queryClient = new QueryClient();

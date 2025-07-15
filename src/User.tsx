@@ -1,9 +1,12 @@
 import { useUser } from "./hooks/useUser";
 import { useApiStatus } from "./hooks/useApiStatus";
+import { useUserTodo } from "./hooks/useUserTodo"; 
+import { useMutation } from "@tanstack/react-query";
 const User = () => {
 
     const { data: apiHealt, isLoading: healthLoading} = useApiStatus();
     const { data, isLoading, error } = useUser();
+    const { data: tasks } = useUserTodo();
     const user = data?.user;
 
     if(error) return <h1>Error: {error.message}</h1>
@@ -26,6 +29,7 @@ const User = () => {
                         <h3>user id: {user?.id}</h3>
                         <h3>email: {user?.email}</h3>
                         <h3>created at: {user?.created_at}</h3>
+                        <h3>tasks Quantity: {tasks.length}</h3>
                     </div>
                 </>
             )}

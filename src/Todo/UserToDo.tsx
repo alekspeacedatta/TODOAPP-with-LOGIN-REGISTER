@@ -1,6 +1,6 @@
-import { useUserTodo } from "./hooks/useUserTodo";
-import { type TodosType } from "./Types";
-import { useDeleteTask } from "./hooks/useDeleteTask";
+import { useUserTodo } from "../hooks/useUserTodo";
+import { type TodosType } from "../Types";
+import { useDeleteTask } from "../hooks/useDeleteTask";
 import { useEffect } from "react";
 
 const UserToDo = () => {
