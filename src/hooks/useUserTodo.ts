@@ -5,10 +5,9 @@ import { type TodosType } from "../Types";
 const token = localStorage.getItem('token');
 
 export const useUserTodo = () => {
-    return useQuery({
-        queryKey: ['todos', token],
+    return useQuery<TodosType>({
+        queryKey: ['todos'],
         queryFn: fetchUserTodos,
-        enabled: !!token
+        enabled: !!token,
     })
-    
 }

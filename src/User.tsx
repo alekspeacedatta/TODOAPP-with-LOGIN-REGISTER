@@ -22,7 +22,7 @@ const User = () => {
                 <>
                     <h1>USER CARD</h1>
                     <div className="user">
-                        <h3>Welcome Back {user?.name}</h3>
+                        <h3 style={{ textTransform: 'capitalize' }}>Welcome Back {user?.name}</h3>
                         <h3>user id: {user?.id}</h3>
                         <h3>email: {user?.email}</h3>
                         <h3>created at: {user?.created_at}</h3>

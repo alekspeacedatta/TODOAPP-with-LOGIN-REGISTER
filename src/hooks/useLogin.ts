@@ -1,7 +1,11 @@
 import { Login } from "../api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useUserTodo } from "./useUserTodo";
+
+
 
 export const useLogin = () => {
+    const { refetch } = useUserTodo();
     const queryClient = useQueryClient();
 
     return useMutation({
@@ -9,7 +13,7 @@ export const useLogin = () => {
         onSuccess: (data) => {
             localStorage.setItem('token', data.token)
             console.log(`${data.message}`, 'token saved');
-            
+            refetch()
             queryClient.invalidateQueries({ queryKey: ['me'] })
         },
         onError: (error: any) => {
