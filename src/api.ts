@@ -1,6 +1,6 @@
 import type { LoginUserType } from "./Types";
 import { type RegisterUserType } from "./Types";
-const token = localStorage.getItem('token');
+
 export const fetchUser = async () => {
     const token = localStorage.getItem('token');
     if(!token) throw new Error("Token1 is not found");
@@ -19,6 +19,7 @@ export const fetchApiStatus = async () => {
     return res.json();
 }
 export const fetchUserTodos = async () => {
+    const token = localStorage.getItem('token')
     const res = await fetch('http://localhost:3000/api/todos', {
         headers: {
             Authorization: `Bearer ${token}`
@@ -30,7 +31,7 @@ export const fetchUserTodos = async () => {
     return data.todos;
 }
 export const deleteTask = async (taskId: number) => {
-    
+    const token = localStorage.getItem('token')
     const res = await fetch(`http://localhost:3000/api/todos/${taskId}`, {
         method: 'DELETE',
         headers: {
@@ -40,6 +41,8 @@ export const deleteTask = async (taskId: number) => {
     if(!res.ok) throw new Error("Error, DeleteTask Res Is Not Ok");
 }
 export const addTask = async ( title: string, description: string ) => {
+    const token = localStorage.getItem('token')
+
     const res = await fetch('http://localhost:3000/api/todos', {
         method: 'POST',
         headers: {

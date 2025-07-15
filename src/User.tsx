@@ -9,7 +9,7 @@ const User = () => {
     if(error) return <h1>Error: {error.message}</h1>
     
     return (
-        <>
+        <div className="user-info-api-health">
             <div>
                 {healthLoading ? (
                     <h1>API health Loading...</h1>
@@ -20,17 +20,16 @@ const User = () => {
             </div>
             {isLoading ? (<h1>Loading for User...</h1>) : (
                 <>
-                    <div>
-                        <h1>USER:</h1>
-                        <p>user id: {user?.id}</p>
-                        <p>user email: {user?.email}</p>
-                        <p>user name: {user?.name}</p>
-                        <p>user created at: {user?.created_at}</p>
+                    <h1>USER CARD</h1>
+                    <div className="user">
+                        <h3>Welcome Back {user?.name}</h3>
+                        <h3>user id: {user?.id}</h3>
+                        <h3>email: {user?.email}</h3>
+                        <h3>created at: {user?.created_at}</h3>
                     </div>
-                    <button>Delete user</button>
                 </>
             )}
-        </>
+        </div>
     )
 }
 export default User

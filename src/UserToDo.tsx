@@ -15,18 +15,22 @@ const UserToDo = () => {
     if(error) return <p>Error: {error.message}</p>
 
     return (
-        <div>
+        <div className="task-section">
             <h1>User Todos:</h1>
-            {todos?.map((todo: TodosType) => (
-                <div key={todo.id}>
-                    <h2>Task Title: {todo.title}</h2>
-                    <p>Task Description: {todo.description}</p>
-                    <input type="radio" checked={todo.completed} />
-                    <p>created at: {todo.created_at}</p>
-                    <p>updated at: {todo.updated_at}</p>
-                    <button onClick={() => { handleDelete(todo.id) }}>delete Task</button> 
-                </div>
-            ))}
+            <div className="tasks-container">
+                {todos?.map((todo: TodosType) => (
+                    <div key={todo.id} className="task">
+                        <section>
+                            <h2>{todo.title}</h2>
+                            <p>{todo.description}</p>
+                            <input type="radio" checked={todo.completed} />
+                        </section>
+                        {/* <p>created at: {todo.created_at}</p> */}
+                        {/* <p>updated at: {todo.updated_at}</p> */}
+                        <button onClick={() => { handleDelete(todo.id) }}>delete Task</button> 
+                    </div>
+                ))}
+            </div>
         </div>
     )
 }

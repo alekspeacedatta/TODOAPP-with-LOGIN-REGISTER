@@ -16,7 +16,8 @@ const Login = () => {
     }
 
     return (
-        <div>
+        <div className="form login">
+            <h1>Login:</h1>
             <form onSubmit={handleSubmit}>
                 <section>
                     <label >Email: {email}</label>
@@ -26,7 +27,7 @@ const Login = () => {
                     <label htmlFor="">Password: {password}</label>
                     <input type="password" onChange={e => setPassword(e.target.value)} placeholder="enter your password" value={password}/>
                 </section>
-                <input type="submit"/>
+                <button type="submit">Submit</button>
             </form>
         </div>
     )

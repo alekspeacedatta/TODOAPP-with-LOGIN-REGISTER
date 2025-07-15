@@ -17,10 +17,10 @@ createRoot(document.getElementById('root')!).render(
       <div className="login-register">
         <Register/>
         <Login/>
+        <AddTodo/>
+        <UserToDo/>
       </div>
       <div>
-        <UserToDo/>
-        <AddTodo/>
       </div>
     </QueryClientProvider>
   </StrictMode>,

@@ -17,7 +17,8 @@ const Register = () => {
         setName('');
     }
     return (
-        <div>
+        <div className='form register'>
+            <h1>Register</h1>
             <form onSubmit={handleSubmit}>
                 <section>
                     <label >Email: {email}</label>
@@ -31,7 +32,7 @@ const Register = () => {
                     <label htmlFor="">Name: {name}</label>
                     <input type="text" onChange={e => setName(e.target.value)} placeholder="enter your password" value={name}/>
                 </section>
-                <input type="submit"/>
+                <button type='submit' >Submit</button>
             </form> 
             
         </div>
