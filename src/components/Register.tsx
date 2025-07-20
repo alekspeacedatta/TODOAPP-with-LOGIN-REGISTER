@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import '../Register-Login.css'
-import { useRegister } from '../../hooks/useRegister';
+import { useRegister } from '../hooks/useRegister';
 
 const Register = () => {
     const [ email, setEmail ] = useState('');

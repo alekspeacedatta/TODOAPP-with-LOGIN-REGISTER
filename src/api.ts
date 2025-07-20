@@ -1,11 +1,11 @@
 import type { LoginUserType } from "./Types";
 import { type RegisterUserType } from "./Types";
-
+const API_BASE = 'http://localhost:3000'
 export const fetchUser = async () => {
     const token = localStorage.getItem('token');
     if(!token) throw new Error("Token1 is not found");
     
-    const res = await fetch('http://localhost:3000/api/auth/me', {
+    const res = await fetch(`${API_BASE}/api/auth/me`, {
         headers: {
             Authorization: `Bearer ${token}`
         },
@@ -14,13 +14,13 @@ export const fetchUser = async () => {
     return res.json();
 }
 export const fetchApiStatus = async () => {
-    const res = await fetch('http://localhost:3000/health');
+    const res = await fetch(`${API_BASE}/health`);
     if(!res.ok) throw new Error("Health Fetch Res Is Not OK");
     return res.json();
 }
 export const fetchUserTodos = async () => {
     const token = localStorage.getItem('token')
-    const res = await fetch('http://localhost:3000/api/todos', {
+    const res = await fetch(`${API_BASE}/api/todos`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -32,7 +32,7 @@ export const fetchUserTodos = async () => {
 }
 export const deleteTask = async (taskId: number) => {
     const token = localStorage.getItem('token')
-    const res = await fetch(`http://localhost:3000/api/todos/${taskId}`, {
+    const res = await fetch(`${API_BASE}/api/todos/${taskId}`, {
         method: 'DELETE',
         headers: {
             Authorization: `Bearer ${token}`
@@ -43,7 +43,7 @@ export const deleteTask = async (taskId: number) => {
 export const addTask = async ( title: string, description: string ) => {
     const token = localStorage.getItem('token')
 
-    const res = await fetch('http://localhost:3000/api/todos', {
+    const res = await fetch(`${API_BASE}/api/todos`, {
         method: 'POST',
         headers: {
             'Content-Type': 'Application/json',
@@ -58,7 +58,7 @@ export const addTask = async ( title: string, description: string ) => {
     return res.json();
 }
 export const Login = async ( {email, password} : LoginUserType ) => {
-    const res = await fetch('http://localhost:3000/api/auth/login', {
+    const res = await fetch(`${API_BASE}/api/auth/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -75,7 +75,7 @@ export const Login = async ( {email, password} : LoginUserType ) => {
     return data
 }
 export const Register = async ( {email, password, name} : RegisterUserType ) => {
-    const res = await fetch('http://localhost:3000/api/auth/register', {
+    const res = await fetch(`${API_BASE}/api/auth/register`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

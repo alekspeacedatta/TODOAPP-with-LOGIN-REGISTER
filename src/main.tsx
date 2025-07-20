@@ -1,11 +1,11 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { createRoot } from 'react-dom/client'
 import { StrictMode } from 'react'
-import User from './User'
-import Register from './Register-Login/Register/Register'
-import Login from './Register-Login/Login/Login'
-import UserToDo from './Todo/UserToDo'
-import AddTodo from './Todo/AddTodo'
+import User from './components/User'
+import Register from './components/Register'
+import Login from './components/Login'
+import UserToDo from './components/UserToDo'
+import AddTodo from './components/AddTodo'
 import './index.css'
 
 const queryClient = new QueryClient();
