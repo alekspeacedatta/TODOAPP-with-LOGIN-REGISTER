@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import '../Register-Login.css'
 import { useRegister } from '../hooks/useRegister';
 
 const Register = () => {
